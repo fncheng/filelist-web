@@ -1,0 +1,135 @@
+@media (max-width: 992px) {
+  .title,
+  .list-wrapper,
+  .readme {
+    width: 100%;
+  }
+  .title {
+    padding: 15px 10px;
+  }
+  .header-container {
+    padding: 10px 15px;
+  }
+}
+
+@media (min-width: 993px) {
+  .title,
+  .list-wrapper,
+  .readme {
+    width: 80%;
+  }
+  .title {
+    padding: 25px 0;
+  }
+  .header-container {
+    padding: 10px 30px;
+  }
+}
+
+body {
+  background-color: #f7f7f9;
+}
+
+.title,
+.readme,
+.list-wrapper {
+  margin: 0 auto;
+}
+
+.title h1 {
+  text-align: left;
+  color: #333333;
+  letter-spacing: 2px;
+  line-height: 64px;
+  margin: 0;
+}
+
+.list-wrapper {
+  margin-bottom: 40px;
+  position: relative;
+  -webkit-box-shadow: 0 0 32px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 32px 0 rgba(0, 0, 0, 0.1);
+}
+
+.list-wrapper .header-container {
+  margin: 0;
+  border: 0 none;
+  text-align: left;
+  font-weight: normal;
+  color: #000000;
+  background-color: #f7f7f9;
+}
+
+.list-wrapper .header-container .title-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px 0;
+  font-size: 1.2em;
+}
+
+.list-wrapper .header-container .title-icon h3 {
+  font-size: 1em;
+}
+
+.list-wrapper .header-container .title-icon h3 > span > span:first-child {
+  cursor: pointer;
+}
+
+.list-wrapper .header-container .title-icon h3 > span > span:first-child:hover {
+  text-decoration: underline;
+}
+
+.list-wrapper .list-body-container {
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background: white;
+  position: relative;
+}
+
+.list-wrapper .list-body-container .file-icon {
+  padding-right: 10px;
+}
+
+.list-wrapper .list-body-container .ivu-table td {
+  border-bottom: none;
+  height: 36px;
+}
+
+.list-wrapper .list-body-container .ivu-table a {
+  display: inline-block;
+  width: 100%;
+}
+
+.list-wrapper .list-body-container .ivu-table a:hover {
+  font-weight: bolder;
+}
+
+.list-wrapper .list-body-container .ivu-table th {
+  background: #fff;
+  border-bottom: none;
+  height: 36px;
+}
+
+.list-wrapper .list-body-container .ivu-table .ivu-table-cell {
+  white-space: nowrap;
+}
+
+.ivu-table-row-hover .ivu-table-cell {
+  white-space: normal;
+}
+
+.play {
+  padding: 5px;
+  cursor: pointer;
+}
+/*# sourceMappingURL=index.css.map */
