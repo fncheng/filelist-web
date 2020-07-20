@@ -2,22 +2,20 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import axios from 'axios'
 import 'font-awesome/css/font-awesome.min.css'
 
-import VIewUI from 'view-design'
-import 'view-design/dist/styles/iview.css'
-import VueRouter from 'vue-router'
-import Axios from 'axios'
-
-Vue.use(VueRouter)
-Vue.use(VIewUI)
-
+import { Message, Table, Notice, Icon } from 'view-design'
+Vue.prototype.$Message = Message
+Vue.prototype.$Notice = Notice
+Vue.component('Table', Table)
+Vue.component('Icon', Icon)
 Vue.config.productionTip = false
 
 if (process.env.NODE_ENV === 'production') {
   // 为生产环境配置...
   let startApp = function() {
-    Axios.get('serverconfig.json').then(res => {
+    axios.get('serverconfig.json').then(res => {
       console.log(res)
       // 基础地址
       Vue.prototype.baseURL = res.data.baseURL
@@ -28,10 +26,10 @@ if (process.env.NODE_ENV === 'production') {
       }).$mount('#app')
     })
   }
+
   startApp()
 } else {
   // 为开发环境配置...
-  // mock数据
   Vue.prototype.baseURL = 'http://127.0.0.1:4523/mock/348502'
   new Vue({
     router,

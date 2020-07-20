@@ -2,7 +2,7 @@
   <div class="content">
     <!-- 标题 -->
     <div class="title">
-      <h1>GONEList</h1>
+      <h1>FILEList</h1>
     </div>
     <!-- 文件列表 -->
     <div class="list-wrapper">
@@ -18,7 +18,7 @@
                 @click="toPath(index)"
               >
                 <span>{{ item == '/' ? 'root' : item }}</span>
-                <span style="padding-left:5px" v-if="item || item != '/'"
+                <span style="padding-left: 5px;" v-if="item || item != '/'"
                   >/
                 </span>
               </span>
@@ -30,7 +30,7 @@
               title="返回上一级"
             />
           </div>
-          <!-- Search -->
+
           <div class="search-container">
             <input
               id="search"
@@ -193,7 +193,7 @@
 <script>
 import { getAllFiles, logout } from '../API/api'
 import { checkFileType } from '../utils/index'
-import Readme from './Readme.vue'
+import Readme from './Readme'
 import DPlayer from '../components/Dplayer'
 import APlayer from '../components/Aplayer'
 
@@ -207,6 +207,12 @@ export default {
   data() {
     return {
       header: [
+        // title:列头显示文字
+        // slot
+        //key:对应列内容的字段名
+        //sortable:对应列是否可以排序
+        //sortType:初始化排序
+        //sortMethod:自定义排序使用的方法
         {
           title: '文件',
           slot: 'name',
@@ -265,7 +271,7 @@ export default {
       keywords: '',
       reg: /""/,
       hash: '',
-      // origin + path + hash
+      // origin + parh + hash
       href: '',
       // origin + path
       baseurl: '',
@@ -280,11 +286,16 @@ export default {
         index: -1,
         hash: ''
       },
-      isProduction: false
+      isProduction: false,
+      readme: ''
     }
   },
   created() {
     this.init()
+    // getReadme(this.baseURL).then((res) => {
+    //   this.readme = res.data;
+    //   //console.log(this.readme)
+    // });
   },
   watch: {
     $route: {
@@ -323,10 +334,8 @@ export default {
     }
   },
   methods: {
-    // 初始化
     init() {
       this.keywords = ''
-      // decodeURIComponent() 方法用于解码由 encodeURIComponent 方法或者其它类似方法编码的部分统一资源标识符（URI）
       this.hash = decodeURIComponent(window.location.hash)
       // hash为空或者hash为#/都认为hash为#/
       if (!this.hash) {
@@ -337,7 +346,7 @@ export default {
           this.hash = this.hash.slice(0, -1)
         }
       }
-      console.log('process.env.NODE_ENV: ', process.env.NODE_ENV)
+      console.log(process.env.NODE_ENV)
       if (process.env.NODE_ENV === 'production') {
         this.isProduction = true
         this.baseurl =
@@ -350,12 +359,9 @@ export default {
       }
 
       this.href = this.baseurl + this.hash
-      console.log('this.href: ', this.href)
-      console.log('this.hash：', this.hash)
+      console.log('格式化后的hash：', this.hash)
       // 通过search来查找对应的文件夹,需要decodeURI一下
-      this.path = this.hash.slice(1).split('/') // ["",""]
-      console.log('this.path: ', this.path)
-
+      this.path = this.hash.slice(1).split('/')
       // 将最后的空元素删除
       // 如果最后一个元素是 "" 就删
       if (this.path[this.path.length - 1] == '') {
@@ -368,22 +374,14 @@ export default {
       }
       console.log('path数组：', this.path)
       let param = decodeURIComponent(window.location.hash)
-      // hash值末位为 / 则为 ""
       if (param[param.length - 1] == '/') {
         param = param.slice(1, -1)
       } else {
         param = param.slice(1)
       }
       console.log('请求的参数：', param)
-
       this.loading = true
-      // 获取全部文件
       getAllFiles(this.baseURL, param).then(res => {
-        console.log('res: ', JSON.stringify(res.data))
-        const blob = JSON.stringify(res.data)
-        localStorage.setItem('filelist', blob)
-        console.log('localStorage: ', localStorage.getItem('filelist'))
-
         this.loading = false
         if (res.code == 400) {
           window.location.href = `${this.baseURL}/login`
@@ -399,7 +397,6 @@ export default {
               this.files.children = []
               this.files.children.push(this.files)
               console.log('下载', this.files.download_url)
-              console.log('this.files: ', this.files)
               //window.open(this.files.download_url, "_blank")
               window.location.href = this.files.download_url
             }

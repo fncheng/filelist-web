@@ -1,31 +1,24 @@
 <template>
-    <div id="app">
-        <!-- <div id="nav">
+  <div id="app">
+    <!-- <div id="nav">
             <h1>App.vue的内容</h1>
         </div> -->
-        <router-view />
-    </div>
+    <router-view />
+  </div>
 </template>
 
-<style lang="scss">
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
+<script>
+import 'view-design/dist/styles/iview.css'
+// import Index from "@/views/index"
+export default {}
+</script>
+
+<style>
+a {
+  text-decoration: none;
+  color: black;
 }
-
-#nav {
-    padding: 30px;
-
-    a {
-        font-weight: bold;
-        color: #2c3e50;
-
-        &.router-link-exact-active {
-            color: #42b983;
-        }
-    }
+a:hover {
+  color: black;
 }
 </style>

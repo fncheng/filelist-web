@@ -65,3 +65,8 @@ window.location.hash = "/chrome-plugin"
 // url就会跳转到localhost:8080/#/chrome-plugin
 // 注意:/#会自动加上
 ```
+
+问题:
+
+- Uncaught (in promise) TypeError: Cannot read property 'cancelToken' of undefined
+  [相关链接](https://github.com/svrcekmichal/redux-axios-middleware/issues/83)

@@ -1,17 +1,19 @@
 import axios from 'axios'
 import Vue from 'vue'
-const service = axios.create()
+// 创建实例时设置配置的默认值
+var service = axios.create({
+  timeout: 15000
+})
 // 添加响应拦截器
-service.interceptors.request.use(
-  function(response) {
+service.interceptors.response.use(
+  response => {
     const res = response.data
     console.log(res)
     return res
   },
-  function(error) {
-    // 对响应错误做点什么
+  error => {
     Vue.prototype.$Message.error('请求失败')
-    console.log('error: ' + error)
+    console.log('err' + error) // for debug
   }
 )
 export default service
