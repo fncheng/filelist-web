@@ -38,19 +38,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## 问题
 
-> 1.  scss 中多个类名下其中一个子类的 css 样式嵌套怎么连写
->
-> ```css
-> .title,
-> .readme,
-> .list-wrapper {
->   margin: 0 auto;
->   h1 {
->     color: red;
->   }
-> } /* 其中h1是.title下的标签 */
-> ```
-
 一个解析 markdown 的 css 样式表[Github Markdown css](https://github.com/sindresorhus/github-markdown-css)
 
 ### Vue-router 中的 hash
