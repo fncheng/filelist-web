@@ -1,4 +1,4 @@
-# filelist
+# ServerBox
 
 ## Project setup
 
